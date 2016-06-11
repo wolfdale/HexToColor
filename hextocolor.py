@@ -10,3 +10,14 @@ def hextocolor(hex_code):
 	color_list = color_list * 14400
 	image.putdata(color_list)
 	image.save("hola.jpg")
+
+
+def GUI():
+	main_window = Tkinter.Tk()
+	main_window.mainloop()
+if __name__=='__main__':
+	GUI()
+	hex_code = raw_input()
+	hex_code = '#' + str(hex_code)
+	print hex_code
+	hextocolor(hex_code)
