@@ -10,7 +10,7 @@ import Tkinter
 class App(object):
     def __init__(self):
 	self.root = Tk()
-        self.root.geometry("200x200")
+        self.root.geometry("250x250")
 	self.root.wm_title("Hex To Color")
 	
 	self.label = Label (self.root, text= "Enter Hex Code")
@@ -30,13 +30,15 @@ class App(object):
         hex_code = self.entrytext.get()
 	hex_code = '#' + str(hex_code)
         self.hextocolor(str(hex_code))
-        #self.label.configure(text=result)
-	self.image_area = Canvas(self.root, width = 100, height = 100)
+	
+	self.image_area = Canvas(self.root, width = 120, height = 120)
 	self.image_area.pack()
+	
 	PILFile = Image.open('image.jpg')
 	self.image_area.photo = ImageTk.PhotoImage(PILFile)
+	
 	self.image_area.delete('all')
-	self.image_area.create_image(80,80,image=self.image_area.photo,anchor=NW)	
+	self.image_area.create_image(100,100,image=self.image_area.photo,anchor=CENTER)	
 
     def hextocolor(self, hex_code):
         rgb_tuple = ImageColor.getrgb(hex_code)
