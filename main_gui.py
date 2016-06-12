@@ -10,25 +10,31 @@ import Tkinter
 class App(object):
     def __init__(self):
 	self.root = Tk()
-        self.root.geometry("250x250")
+        self.root.geometry("250x275")
 	self.root.wm_title("Hex To Color")
 	
-	self.label = Label (self.root, text= "Enter Hex Code")
+	self.label = Label (self.root, text= "Enter Hex Code\n")
         self.label.pack()
+        
 	self.entrytext = StringVar()
         Entry(self.root, textvariable=self.entrytext).pack()
 
-	self.image_area = Canvas(self.root, width = 120, height = 120)
+        self.label = Label (self.root, text="\n")
+        self.label.pack()
+	self.image_area = Canvas(self.root, width = 100, height = 100)
 	self.image_area.pack()
         
+        self.label = Label (self.root, text="\n")
+        self.label.pack()
 	self.buttontext = StringVar()
         self.buttontext.set("Go")
         Button(self.root, textvariable=self.buttontext, command=self.on_click).pack()
 
-        self.label = Label (self.root, text="")
+        self.label = Label (self.root, text="\n")
         self.label.pack()
 
         self.root.mainloop()
+    
     def on_click(self):
         hex_code = self.entrytext.get()
 	hex_code = '#' + str(hex_code)
@@ -41,7 +47,7 @@ class App(object):
 	self.image_area.photo = ImageTk.PhotoImage(PILFile)
 	
 	self.image_area.delete('all')
-	self.image_area.create_image(100,100,image=self.image_area.photo,anchor=CENTER)	
+	self.image_area.create_image(50,50,image=self.image_area.photo,anchor=CENTER)	
 	
     def hextocolor(self, hex_code):
         rgb_tuple = ImageColor.getrgb(hex_code)
