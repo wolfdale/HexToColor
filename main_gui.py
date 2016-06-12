@@ -18,28 +18,31 @@ class App(object):
 	self.entrytext = StringVar()
         Entry(self.root, textvariable=self.entrytext).pack()
 
-        self.buttontext = StringVar()
+	self.image_area = Canvas(self.root, width = 120, height = 120)
+	self.image_area.pack()
+        
+	self.buttontext = StringVar()
         self.buttontext.set("Go")
-        Button(self.root, textvariable=self.buttontext, command=self.clicked1).pack()
+        Button(self.root, textvariable=self.buttontext, command=self.on_click).pack()
 
         self.label = Label (self.root, text="")
         self.label.pack()
 
         self.root.mainloop()
-    def clicked1(self):
+    def on_click(self):
         hex_code = self.entrytext.get()
 	hex_code = '#' + str(hex_code)
         self.hextocolor(str(hex_code))
 	
-	self.image_area = Canvas(self.root, width = 120, height = 120)
-	self.image_area.pack()
+	#self.image_area = Canvas(self.root, width = 120, height = 120)
+	#self.image_area.pack()
 	
 	PILFile = Image.open('image.jpg')
 	self.image_area.photo = ImageTk.PhotoImage(PILFile)
 	
 	self.image_area.delete('all')
 	self.image_area.create_image(100,100,image=self.image_area.photo,anchor=CENTER)	
-
+	
     def hextocolor(self, hex_code):
         rgb_tuple = ImageColor.getrgb(hex_code)
         image = Image.new('RGB',(120,120))
