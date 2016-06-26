@@ -1,13 +1,10 @@
 from Tkinter import *
 import tkMessageBox
-from PIL import ImageColor
-from PIL import ImageTk
-from PIL import Image
-import Tkinter
+from PIL import ImageTk, Image, ImageColor
+from os import system, path
 
 
-
-class App(object):
+class HexToColor(object):
     def __init__(self):
 	self.root = Tk()
         self.root.geometry("250x275")
@@ -59,10 +56,12 @@ class App(object):
         image.save("image.jpg")
 
 
-    def button_click(self, e):
-        pass
+def clean_up_ops():
+	system('rm -f ./image.jpg')	
 
 
 
 if __name__=='__main__':
-	App()
+	HexToColor()
+	#Clean APP Temp Data 
+	clean_up_ops()	

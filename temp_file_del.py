@@ -1,13 +1,11 @@
 from Tkinter import *
 import tkMessageBox
-from PIL import ImageColor
-from PIL import ImageTk
-from PIL import Image
-import Tkinter
-from os import system
+from PIL import ImageTk, Image, ImageColor
+from os import system, path
 
 
 class App(object):
+    
     def __init__(self):
 	self.root = Tk()
         self.root.geometry("250x275")
@@ -32,8 +30,8 @@ class App(object):
 
         self.label = Label (self.root, text="\n")
         self.label.pack()
-	self.root.protocol("WM_DELETE_WINDOW",self.on_close_del_temp_file())
-        self.root.mainloop()
+        
+	self.root.mainloop()
     
     def on_click(self):
         hex_code = self.entrytext.get()
@@ -57,12 +55,12 @@ class App(object):
         image.save("image.jpg")
 
 
-    def button_click(self, e):
-        pass
-    
-    def on_close_del_temp_file(self):
-	system("rm -f image.jpg")
+def clean_up_ops():
+	system('rm -f ./image.jpg')	
+
+
 
 
 if __name__=='__main__':
 	App()
+	clean_up_ops()	
